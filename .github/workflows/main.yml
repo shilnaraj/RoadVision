@@ -1,0 +1,30 @@
+name : RoadVision CI
+
+on :
+ push :
+  branches : ["master"]
+  
+ pull_request :
+  branches : ["master"]
+
+permissions:
+  contents: read
+
+jobs:
+  build :
+   runs-on: ubuntu-latest
+
+   steps:
+     - name : Checkout code
+       uses : subosito/flutter-action@v2
+       with:
+        channel : stable
+        
+     - name : Get dependencies
+       run : flutter pub get
+
+     - name : Build APK
+       run : flutter build apk 
+      
+     
+
